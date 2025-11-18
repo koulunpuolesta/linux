@@ -1,0 +1,22 @@
+import streamlit as st
+import mysql.connector
+import pandas as pd
+
+
+conn = mysql.connector.connect(
+host="localhost",
+user="käyttäjänimi tähän",
+password="salasana tähän",
+database="Testitietokanta"
+)
+
+
+query = "SELECT * FROM mittaukset"
+df =pd.read_sql(query, conn)
+
+conn.close()
+
+
+
+st.title("Lasten mittaukset")
+st.dataframe(df)
